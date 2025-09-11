@@ -20,7 +20,7 @@ class Test_003_addCustomer:
     def test_addCus(self,setup):
         self.driver = setup
         self.driver.implicitly_wait(5)
-        self.driver.get(self.pageUrl)  # <-- Make sure browser opens URL again
+        self.driver.get(self.pageUrl) 
         lp = LoginPage(self.driver)
         lp.setUserName(self.username)
         lp.setPassword(self.password)
