@@ -1,7 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from testCases.test_LoginPage import Test_001_LoginPage
 
 
@@ -16,10 +17,10 @@ class AddCustomer:
     rbtn_male_ID="Gender_Male"
     txtbox_compname_ID="Company"
     txtbox_tax_ID="IsTaxExempt"
-    drpdwn_newLetter_xpath="//div[@class='input-group-append']//input[@role='searchbox']"
-    drpdwn_newLetterNop_xpath="//li[@id='select2-SelectedNewsletterSubscriptionStoreIds-result-8sh1-1']"
+    drpdwn_newLetter_xpath="//*[@id='customer-info']/div[2]/div[8]/div[2]/div/div[1]/div/span/span[1]/span"
+    drpdwn_newLetterNop_xpath="//li[text()='nopCommerce admin demo store']"
     btn_cusroleRemove_xpath="//span[@role='presentation']"
-    btn_cusroleAdd_xpath="//li[@id='select2-SelectedCustomerRoleIds-result-waah-1']"
+    btn_cusroleAdd_xpath="//li[@id='select2-SelectedCustomerRoleIds-result-rs09-1']"
     select_manOfVend_xpath="//select[@id='VendorId']"
     rbtn_changepass_xpath="//input[@id='MustChangePassword']"
     btn_save_xpath="//button[@name='save']"
@@ -60,8 +61,9 @@ class AddCustomer:
         self.driver.find_element(By.XPATH,self.drpdwn_newLetterNop_xpath).click()
 
     def clickCusRoles(self):
-        self.driver.find_element(By.XPATH,self.btn_cusroleRemove_xpath).click()
-        self.driver.find_element(By.XPATH,self.btn_cusroleAdd_xpath).click()
+        wait=WebDriverWait(self.driver,10)
+        wait.until(EC.element_to_be_clickable((By.XPATH,self.btn_cusroleRemove_xpath))).click()
+        wait.until(EC.element_to_be_clickable((By.XPATH,self.btn_cusroleAdd_xpath))).click()
 
     def selectVendor(self):
         select=Select(self.driver.find_element(By.XPATH,self.select_manOfVend_xpath))
