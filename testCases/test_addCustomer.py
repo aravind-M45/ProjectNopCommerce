@@ -20,7 +20,7 @@ class Test_003_addCustomer:
     def test_addCus(self,setup):
         self.driver = setup
         self.driver.implicitly_wait(5)
-        self.driver.get(self.pageUrl) 
+        self.driver.get(self.pageUrl)
         lp = LoginPage(self.driver)
         lp.setUserName(self.username)
         lp.setPassword(self.password)
@@ -37,7 +37,7 @@ class Test_003_addCustomer:
         ac.addCompany("QualiTlabs")
         ac.clickTax()
         ac.clickNewsLetter()
-        ac.clickCusRoles()
         ac.selectVendor()
         ac.clickChangePassword()
         ac.clickSave()
+        self.driver.quit()
